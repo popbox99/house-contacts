@@ -78,15 +78,24 @@ def _digits(s: str) -> str:
     return re.sub(r"\D", "", s or "")
 
 
+_NOUN_VERBS = {"number", "address", "info", "details", "me", "up", "back"}
+
 def extract_call_target(text: str):
-    """Pull the person's name out of 'remind me to call Dana Reyes tomorrow'."""
+    """Pull the person's name out of 'remind me to call Dana Reyes tomorrow'.
+    Rejects noun-uses like 'what is Dana's phone number' ("phone" matches as a
+    verb but "number" is not a person)."""
     m = _TARGET_RE.search(text or "")
     if not m:
         return None
+    verb = m.group(1).lower()
     name = m.group(2)
     name = _FILLER.sub("", name).strip()
     # drop dangling single-letter/garbage tokens
     name = re.sub(r"\s+\b[a-z]\b$", "", name, flags=re.IGNORECASE).strip()
+    if not name or name.lower() in _NOUN_VERBS:
+        return None
+    if verb == "phone" and re.match(r"(?:number|address|info)", name, re.I):
+        return None
     return name or None
 
 

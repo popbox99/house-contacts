@@ -1,4 +1,4 @@
-# house-contacts
+# contacts-bot
 
 Give a chat/voice bot access to your real contacts — feed it a `contacts.json` built from
 **whichever contacts storage you already use**, and it can attach phone numbers and emails

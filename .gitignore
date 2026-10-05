@@ -1,0 +1,12 @@
+# personal data — never commit
+contacts.json
+*.vcf
+*.sqlite
+config.json
+
+__pycache__/
+*.pyc
+
+# private deployment helpers (one specific bot host)
+deploy-*.sh
+*.bak.*

@@ -1,0 +1,7 @@
+[Unit]
+Description=Build house-contacts.json from configured contact sources
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/housecontacts.py build

@@ -1,0 +1,7 @@
+{
+  "out_path": "~/.local/share/house-contacts/contacts.json",
+  "sources": [
+    {"type": "thunderbird"},
+    {"type": "vcf", "path": "~/.local/share/house-contacts/sources/google-contacts.vcf"}
+  ]
+}
